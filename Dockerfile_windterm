@@ -1,15 +1,18 @@
 FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
 
-
-COPY WindTerm_2.7.0  /app/WindTerm_2.7.0/
 COPY root /
 
 
 RUN apt-get update && \
-    apt-get install -y libpulse-mainloop-glib0 \
+    apt-get install -y libpulse-mainloop-glib0 wget unzip\
+    && wget https://github.com/kingToolbox/WindTerm/releases/download/2.7.0/WindTerm_2.7.0_Linux_Portable_x86_64.zip \
+    && unzip WindTerm_2.7.0_Linux_Portable_x86_64.zip \
+    && mv WindTerm_2.7.0 /app/WindTerm_2.7.0 \
+    && rm WindTerm_2.7.0_Linux_Portable_x86_64.zip \
     && chmod +x /app/WindTerm_2.7.0/WindTerm \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir  /data
-
+    && mkdir  /data \
+    # add profiles.config to WindTerm_2.7.0/
+    && mv /defaults/profiles.config /app/WindTerm_2.7.0/ 
 
 

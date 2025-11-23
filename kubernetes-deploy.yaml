@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: windterm
+  labels:
+    app: windterm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: windterm
+  template:
+    metadata:
+      labels:
+        app: windterm
+    spec:
+      containers:
+      - name: windterm
+        image: windterm
+        command: ["bash"]
+        env:
+        - name: CUSTOM_USER
+          value: "<your user>"
+        - name: PASSWORD
+          value: "<your PASSWORD>"
+        ports:
+        - containerPort: 3001
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+      volumes:
+      - name: data-volume
+        hostPath:
+          path: ./data
+          type: DirectoryOrCreate
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: windterm-service
+spec:
+  selector:
+    app: windterm
+  ports:
+  - name: http
+    port: 3001
+    targetPort: 3001
+    nodePort: 30001
+  type: NodePort
