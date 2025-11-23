@@ -1,6 +1,6 @@
 FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
 
-# 复制文件并一次性安装
+
 COPY WindTerm_2.7.0  /app/WindTerm_2.7.0/
 COPY root /
 
