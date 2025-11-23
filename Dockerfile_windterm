@@ -1,0 +1,15 @@
+FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
+
+# 复制文件并一次性安装
+COPY WindTerm_2.7.0  /app/WindTerm_2.7.0/
+COPY root /
+
+
+RUN apt-get update && \
+    apt-get install -y libpulse-mainloop-glib0 \
+    && chmod +x /app/WindTerm_2.7.0/WindTerm \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir  /data
+
+
+
