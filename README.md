@@ -39,3 +39,8 @@ https://ip:3001
 ### 配置说明
 
 更多自定义配置请参考 [Selkies Base Images from LinuxServer](https://github.com/linuxserver/docker-baseimage-selkies)。
+
+
+### 运行截图：
+
+![运行截图](./picture/run.png "运行截图")
