@@ -17,7 +17,7 @@ spec:
       containers:
       - name: windterm
         image: windterm
-        command: ["bash"]
+        imagePullPolicy: IfNotPresent
         env:
         - name: CUSTOM_USER
           value: "<your user>"
@@ -31,7 +31,7 @@ spec:
       volumes:
       - name: data-volume
         hostPath:
-          path: ./data
+          path: /data/windterm
           type: DirectoryOrCreate
 
 ---

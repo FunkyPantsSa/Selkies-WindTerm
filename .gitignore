@@ -2,3 +2,5 @@
 /WindTerm_2.7.0
 tmp.txt
 Dockerfile_firefox
+firefox/Dockerfile
+firefox/root/defaults/autostart
